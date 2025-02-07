@@ -1,0 +1,2 @@
+# Docker compose file specific for nvidia gpus
+# TODO: I don´t have any spare nvidia gpu for testing
