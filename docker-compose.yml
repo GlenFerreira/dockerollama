@@ -1,0 +1,18 @@
+# Docker compose file specific for cpus
+
+services:
+  ollama:
+    volumes:
+      - ./ollama:/root/.ollama
+    container_name: ollama
+    build: ./
+    pull_policy: always
+    tty: true
+    restart: unless-stopped
+    image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
+    ports:
+      - "11434:11434"  # Expor a API para o host
+
+volumes:
+  ollama: {}
+
