@@ -5,13 +5,14 @@ services:
     volumes:
       - ./ollama:/root/.ollama
     container_name: ollama
-    build: ./
     pull_policy: always
     tty: true
     restart: unless-stopped
     image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
     ports:
       - "11434:11434"  # Expor a API para o host
+    entrypoint: >
+      sh -c "ollama serve & sleep 2 && ollama pull hf.co/legraphista/DeepSeek-V2-Lite-Chat-IMat-GGUF:IQ4_NL && tail -f /dev/null"
 
 volumes:
   ollama: {}
